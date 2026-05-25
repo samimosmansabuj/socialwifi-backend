@@ -33,6 +33,7 @@ django_celery_results==2.6.0
 djangorestframework==3.17.1
 djangorestframework_simplejwt==5.5.1
 drf-spectacular==0.29.0
+gunicorn==26.0.0
 hyperlink==21.0.0
 idna==3.16
 Incremental==24.11.0
