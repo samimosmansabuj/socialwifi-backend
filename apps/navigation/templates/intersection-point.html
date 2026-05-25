@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Google Map Example</title>
+    <style>
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <p>Latitude: <span id="lat-span">{{ lat }}</span></p>
+        <p>Longitude: <span id="lng-span">{{ lng }}</span></p>
+        <br>
+    </div>
+
+    <p id="lat-lan"></p>
+    <p id="coordinates"></p>
+
+    <h2>My Google Map</h2>
+    <div id="map"></div>
+    
+    <script>
+        let map;
+        let directionsService;
+        let directionsRenderer;
+
+        function searchLocation() {
+            const lat = parseFloat(document.getElementById("lat-span").innerText);
+            const lng = parseFloat(document.getElementById("lng-span").innerText);
+            updateMap(lat, lng);
+        }
+
+        function updateMap(lat, lng) {
+            document.getElementById("lat-lan").innerText = `${lat},${lng}`;
+            const position = {
+                lat: lat,
+                lng: lng
+            };
+            console.log(position);
+            map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 10,
+                center: position
+            });
+            directionsService = new google.maps.DirectionsService();
+            directionsRenderer = new google.maps.DirectionsRenderer({
+                map: map
+            });
+
+            new google.maps.Marker({
+                position: position,
+                map: map,
+                title: "Searched Location"
+            });
+        }
+
+
+        document.getElementById("lat-lan").addEventListener("click", function() {
+            const text = this.innerText;
+            navigator.clipboard.writeText(text)
+                .then(() => {
+                    console.log("Copied: " + text);
+                })
+                .catch(err => {
+                    console.error("Failed to copy: ", err);
+                });
+        });
+    </script>
+
+    <!-- Replace YOUR_API_KEY -->
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZiZJG8xOhpqNXNhntx1gAxUl0QNK5NyY&callback=initMap">
+        </script>
+
+</body>
+
+</html>
