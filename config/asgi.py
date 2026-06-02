@@ -15,7 +15,7 @@ application = ProtocolTypeRouter({
     "websocket": JWTAuthMiddleware(
         URLRouter([
             re_path(r"^ws/driver/$", DriverConsumer.as_asgi()),
-            re_path(r"^ws/location/$", DriverConsumer.as_asgi()),  # 'ws/location/' পাথটি এখানে যোগ করা হয়েছে
+            re_path(r"^ws/location/$", DriverConsumer.as_asgi()),
         ])
     ),
 })
