@@ -32,7 +32,7 @@ class AddPermitSerializer(serializers.ModelSerializer):
         read_only_fields = ['id', 'route', 'order', 'total_distance', 'waypoints']
     
     def extract_route_data(self, permit_file):
-        url = "http://10.10.20.43:8001/api/ocr/extract"
+        url = "http://16.192.4.30:8001/api/ocr/extract"
 
         permit_file.seek(0)
         payload = {
